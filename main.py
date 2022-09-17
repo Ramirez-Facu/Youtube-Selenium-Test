@@ -19,26 +19,39 @@ def launchBrowser():
     driver = webdriver.Edge(options=edge_options)
     driver.get('https://www.youtube.com')
     time.sleep(10)
-    Element_loggin= driver.find_elements(By.ID, "content")[0]
-    print(Element_loggin.tag_name)
     
     driver.implicitly_wait(5)
+
+    Element_loggin= driver.find_element(By.XPATH, '//*[@id="buttons"]/ytd-button-renderer/a')
     Element_loggin.click()
+    
+    driver.implicitly_wait(5)
+
     time.sleep(5)
+    driver.back()
+    time.sleep(5)
+    driver.implicitly_wait(5)
+    Element_Content= driver.find_elements(By.ID, "content")[0]
+
+    Element_Content.click()
+    
     try:
-        Element_add=WebDriverWait(driver, 7).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="skip-button:p"]/span/button')))# WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//*[@id="skip-button:p"]/span/button"))
+        Element_add=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="skip-button:5"]/span/button')))# WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//*[@id="skip-button:p"]/span/button"))
         Element_add.clic()
+        print("aca")
     except:
+        print("no llego")
         pass
 
    
     try:
-        Element_add2=WebDriverWait(driver, 7).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="skip-button:p"]/span/button')))# WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//*[@id="skip-button:p"]/span/button"))
+        Element_add2=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="skip-button:5"]/span/button')))# WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//*[@id="skip-button:p"]/span/button"))
         Element_add2.clic()
+        print("si llego")
     except:
         pass
     
-    Element_mute = driver.find_element(By.XPATH, '//*[@id="movie_player"]/div[28]/div[2]/div[1]/span/button')
+    Element_mute = WebDriverWait(driver, 10).until(EC.element_to_be_clickable(By.XPATH, '//*[@id="movie_player"]/div[34]/div[2]/div[1]/span/button'))
     Element_mute.click()
     time.sleep(5)
     time.sleep(15)
