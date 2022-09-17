@@ -5,6 +5,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.edge.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+ 
+## agregue este comentario
+
 import time
 
 def launchBrowser():
@@ -21,12 +26,22 @@ def launchBrowser():
     Element_loggin.click()
     time.sleep(5)
     try:
-        Element_add= driver.find_element(By.CLASS_NAME, "ytp-ad-preview-container countdown-next-to-thumbnail")
-        time.sleep(7)
-        Element_add.click()
+        Element_add=WebDriverWait(driver, 7).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="skip-button:p"]/span/button')))# WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//*[@id="skip-button:p"]/span/button"))
+        Element_add.clic()
     except:
         pass
 
+   
+    try:
+        Element_add2=WebDriverWait(driver, 7).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="skip-button:p"]/span/button')))# WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//*[@id="skip-button:p"]/span/button"))
+        Element_add2.clic()
+    except:
+        pass
+    
+    Element_mute = driver.find_element(By.XPATH, '//*[@id="movie_player"]/div[28]/div[2]/div[1]/span/button')
+    Element_mute.click()
+    time.sleep(5)
+    time.sleep(15)
     driver.back()
 
     while(True):
